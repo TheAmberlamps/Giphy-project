@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // Ok, time to get to work. First, an array to handle the various gif types.
+    // Didn't end up using the array.
 
     var foodArr = ["pizza", "tacos", "sandwiches", "french fries"];
 
@@ -45,8 +45,7 @@ $(document).ready(function () {
                    var state = $(this).attr("data-state");
                    
                    console.log(state);
-            
-                   console.log("curious");
+
                    // $(this).attr("data-state") will either be "still" or "animate"
                    // IF it's still: we change it to animate
                    if (state === "still") {
