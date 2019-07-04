@@ -73,9 +73,21 @@ $(document).ready(function () {
 
     event.preventDefault();
 
-    $("#gifsHere").empty();
-
     var newFood = $("#userText").val().trim();
+
+    var newButt = $("<button>" + newFood + "</button>");
+
+    console.log(newButt);
+
+    newButt.attr("foodID", newFood).attr("value", newFood);
+
+    var buttDiv = $("#newButtons");
+
+    buttDiv.append(newButt);
+
+    // ---------------------------------------------
+
+    $("#gifsHere").empty();
 
     var newQuery = "https://api.giphy.com/v1/gifs/search?q=" + newFood + "&api_key=DC8YIroqbf5FsbFtJTgs9R4xDLW7Vz48&limit=10";
     
@@ -83,8 +95,6 @@ $(document).ready(function () {
             url: newQuery,
             method: "GET"
         }).then(function(response) {
-
-            console.log(newFood);
 
             console.log(response);
 
@@ -110,6 +120,8 @@ $(document).ready(function () {
 
                 $("#gifsHere").prepend(gifDiv);
 
+                // -----------------------------------------------
+
                 $(".gif").on("click", function() {
 			
                     // $(this) just means "the element with class 'gif' that was clicked"
@@ -117,7 +129,6 @@ $(document).ready(function () {
                    
                    console.log(state);
             
-                   console.log("curious");
                    // $(this).attr("data-state") will either be "still" or "animate"
                    // IF it's still: we change it to animate
                    if (state === "still") {
@@ -137,28 +148,5 @@ $(document).ready(function () {
         });
     
     });
-
-    // $(".gif").on("click", function() {
-			
-    //     // $(this) just means "the element with class 'gif' that was clicked"
-    //    var state = $(this).attr("data-state");
-       
-    //    console.log(state);
-
-    //    console.log("curious");
-    //    // $(this).attr("data-state") will either be "still" or "animate"
-    //    // IF it's still: we change it to animate
-    //    if (state === "still") {
-    //        $(this).attr("src", $(this).attr("data-animate"));
-    //        $(this).attr("data-state", "animate");
-           
-    //     // OTHERWISE it's animate already, so we change it to still
-    //    } else {
-    //        $(this).attr("src", $(this).attr("data-still"));
-    //        $(this).attr("data-state", "still");
-    //    }
-
-
-    // });
 
 });
